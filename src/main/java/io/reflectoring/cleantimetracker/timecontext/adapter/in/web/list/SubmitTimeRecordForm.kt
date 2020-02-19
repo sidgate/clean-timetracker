@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull
 @NoArgsConstructor
 @AllArgsConstructor
 class SubmitTimeRecordForm (
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @field:DateTimeFormat(pattern = "yyyy-MM-dd")
     var date: @NotNull LocalDate? = null,
     var taskId: @NotNull Long? = null,
     var hours: @NotNull Float? = null

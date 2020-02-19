@@ -29,7 +29,7 @@ import javax.persistence.EntityManager
 
     fun toDomainObject(entity: TaskEntity): Task {
         return Task(
-                id = (of(entity.id))
+                id = (of(entity.id!!))
                 ,name= (entity.name)
                 ,project =(projectEntityMapper.toDomainObject(entity.project))
                 ,invoiceable= (entity.invoiceable)

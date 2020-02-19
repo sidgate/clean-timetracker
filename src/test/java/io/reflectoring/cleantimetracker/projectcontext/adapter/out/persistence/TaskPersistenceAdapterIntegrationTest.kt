@@ -42,7 +42,7 @@ internal class TaskPersistenceAdapterIntegrationTest {
     @Sql(TaskEntityTestFactory.SQL)
     fun updatesStatus() {
         val taskEntity = taskEntityTestFactory!!.defaultTask()
-        val task = Task(TaskId.of(taskEntity.id), null, null, null, null)
+        val task = Task(TaskId.of(taskEntity.id!!), null, null, null, null)
         em!!.clear()
         taskPersistence!!.changeStatus(task, TaskStatus.ACTIVE)
         Java6Assertions.assertThat(taskEntityTestFactory.defaultTask().status).isEqualTo(TaskStatus.ACTIVE)

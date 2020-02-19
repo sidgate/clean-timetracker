@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service
 
 @Service
 class TimeContextAdapter(private val queryTasksPort: QueryTasksPort) {
-    fun listTasksByIds(taskIds: List<Long?>): List<Task> {
+    fun listTasksByIds(taskIds: List<Long>): List<Task> {
         return queryTasksPort.listByIds(taskIds
-                .map { obj: Long? -> of(obj) }
+                .map { obj-> of(obj) }
                 .toList())
     }
 
-    fun loadTask(taskId: Long?) = queryTasksPort.findOne(of(taskId))
+    fun loadTask(taskId: Long) = queryTasksPort.findOne(of(taskId))
 
     fun listAll(): List<Task> {
         return queryTasksPort.listAllTasks()

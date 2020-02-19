@@ -3,7 +3,7 @@ package io.reflectoring.cleantimetracker.timecontext.domain.port.out.projectcont
 import io.reflectoring.cleantimetracker.timecontext.domain.entity.TimeTrackingTask
 
 interface QueryTasksPort {
-    fun listByIds(taskIds: Set<Long?>?): List<TimeTrackingTask?>?
-    fun loadTask(taskId: Long?): TimeTrackingTask?
+    fun listByIds(taskIds: Set<Long>): List<TimeTrackingTask?>?
+    fun loadTask(taskId: Long): TimeTrackingTask?
     fun listAllTasks(): List<TimeTrackingTask?>
 }

@@ -33,13 +33,13 @@ internal class EditProjectController(private val listTasksUseCase: ListTasksUseC
     }
 
     @PostMapping("/projects/{projectId}/tasks/{taskId}/activate")
-    fun activateTask(@PathVariable("taskId") taskId: Long?): String {
+    fun activateTask(@PathVariable("taskId") taskId: Long): String {
         changeTaskStatusUseCase.activateTask(TaskId.of(taskId))
         return "redirect:/projects/{projectId}"
     }
 
     @PostMapping("/projects/{projectId}/tasks/{taskId}/deactivate")
-    fun deactivateTask(@PathVariable("taskId") taskId: Long?): String {
+    fun deactivateTask(@PathVariable("taskId") taskId: Long): String {
         changeTaskStatusUseCase.deactivateTask(TaskId.of(taskId))
         return "redirect:/projects/{projectId}"
     }

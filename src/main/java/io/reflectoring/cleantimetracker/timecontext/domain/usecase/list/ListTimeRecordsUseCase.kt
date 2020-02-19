@@ -24,7 +24,7 @@ class ListTimeRecordsUseCase(private val queryTimeRecordsPort: QueryTimeRecordsP
      * the Task data is loaded from another bounded context.
      */
     private fun expandTasks(timeRecords: List<TimeRecord?>): List<TimeRecordWithTask> {
-        val taskIds = timeRecords.map { obj: TimeRecord? -> obj?.taskId }.toSet()
+        val taskIds = timeRecords.mapNotNull { obj: TimeRecord? -> obj?.taskId }.toSet()
 
         val tasksById = queryTasksPort.listByIds(taskIds)?.map { it?.id to it }?.toMap()
 

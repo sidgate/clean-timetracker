@@ -9,12 +9,12 @@ import java.util.*
 
 @Service
 class ProjectContextAdapter(private val timeContextAdapter: TimeContextAdapter, private val taskMapper: TaskMapper) : QueryTasksPort {
-    override fun listByIds(taskIds: Set<Long?>?): List<TimeTrackingTask?>? {
+    override fun listByIds(taskIds: Set<Long>): List<TimeTrackingTask?>? {
         val tasks: List<Task> = timeContextAdapter.listTasksByIds(ArrayList(taskIds))
         return taskMapper.toTimeTrackingTasks(tasks)
     }
 
-    override fun loadTask(taskId: Long?): TimeTrackingTask? {
+    override fun loadTask(taskId: Long): TimeTrackingTask? {
         val task = timeContextAdapter.loadTask(taskId)
         return if (task !=null) {
             taskMapper.toTimeTrackingTask(task)

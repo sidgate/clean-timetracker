@@ -35,14 +35,14 @@ class ListTimeRecordsUseCase(private val queryTimeRecordsPort: QueryTimeRecordsP
     }
 
     private fun rejectIfEndBeforeStart(queryParameters: ListTimeRecordsQueryParameters) {
-        if (queryParameters.start?.isAfter(queryParameters.end) == true) {
+        if (queryParameters.start.isAfter(queryParameters.end)) {
             throw IntervalEndBeforeStartException(queryParameters.start, queryParameters.end)
         }
     }
 
     private fun rejectIfIntervalIsTooLong(queryParameters: ListTimeRecordsQueryParameters) {
-        val latestAllowedEnd = queryParameters.start?.plusDays(INTERVAL_MAXIMUM_DAYS.toLong())
-        if (queryParameters.end?.isAfter(latestAllowedEnd) == true) {
+        val latestAllowedEnd = queryParameters.start.plusDays(INTERVAL_MAXIMUM_DAYS.toLong())
+        if (queryParameters.end.isAfter(latestAllowedEnd)) {
             throw IntervalTooLongException(queryParameters.start, queryParameters.end, INTERVAL_MAXIMUM_DAYS)
         }
     }

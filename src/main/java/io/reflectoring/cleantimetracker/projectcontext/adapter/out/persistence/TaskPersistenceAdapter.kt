@@ -24,7 +24,9 @@ internal class TaskPersistenceAdapter(private val taskEntityRepository: TaskEnti
     }
 
     override fun findOne(taskId: TaskId): Task? {
-        return taskEntityRepository.findByIdOrNull(taskId.value)?.let { taskEntityMapper.toDomainObject(it) }
+        return taskEntityRepository.findByIdOrNull(taskId.value)?.let {
+            taskEntityMapper.toDomainObject(it)
+        }
     }
 
     override fun listByIds(taskIds: List<TaskId>): List<Task> {

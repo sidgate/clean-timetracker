@@ -1,6 +1,6 @@
 package io.reflectoring.cleantimetracker.projectcontext.domain.entity
 
-class Task(
+data class Task(
         var id: TaskId? = null,
         var name: String? = null,
         var invoiceable: Boolean? = false,

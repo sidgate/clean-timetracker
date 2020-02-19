@@ -67,7 +67,10 @@ internal class ListTimeRecordsUseCaseTest {
 
     private fun whenPersistenceProvidesTimeRecords(start: LocalDate, end: LocalDate, taskIds: Array<Long>): List<TimeRecord> {
         val records = TimeRecordTestFactory.defaultRecords(*taskIds)
-        Mockito.`when`(queryTimeRecordsPort!!.listTimeRecords(ArgumentMatchers.eq(start), ArgumentMatchers.eq(end))).thenReturn(records)
+
+        //TODO Mockito.`when`(queryTimeRecordsPort!!.listTimeRecords(ArgumentMatchers.eq(start), ArgumentMatchers.eq(end))).thenReturn(records)
+        Mockito.`when`(queryTimeRecordsPort!!.listTimeRecords(start, end)).thenReturn(records)
+
         return records
     }
 

@@ -5,7 +5,7 @@ package io.reflectoring.cleantimetracker.timecontext.domain.entity
  */
 
 class TimeTrackingTask(
-        var id: Long? = null,
+        var id: Long,
         var name: String? = null,
         var projectId: Long? = null,
         var projectName: String? = null,

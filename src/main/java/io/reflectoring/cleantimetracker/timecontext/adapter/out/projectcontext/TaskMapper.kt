@@ -9,12 +9,11 @@ import java.util.stream.Collectors
 @Component
 class TaskMapper {
     fun toTimeTrackingTask(task: Task): TimeTrackingTask {
-        return TimeTrackingTask().apply {
+        return TimeTrackingTask(task.id?.value!!).apply {
 
             projectName = (task.project?.name)
             name = (task.name)
             invoiceable = (task.invoiceable)
-            id = (task.id?.value)
             active = (task.status == TaskStatus.ACTIVE)
             projectId = (task.project?.id?.value)
         }

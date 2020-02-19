@@ -13,7 +13,7 @@ class TimeRecordMapper {
                 minutes = (entity.minutes)
                 date = (entity.date)
                 taskId = (entity.taskId)
-                id = (if (entity.id == null) null else TimeRecordId.of(entity.id))
+                id = (if (entity.id == null) null else TimeRecordId.of(entity.id!!))
         }
     }
 

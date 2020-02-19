@@ -25,9 +25,9 @@ import java.util.stream.Collectors
 
     fun toDomainObject(entity: ProjectEntity?): Project {
         return Project(
-                id =(of(entity?.id))
-                ,name =(entity?.name)
-                ,status= (entity?.status)
+                id =(of(entity?.id!!))
+                ,name =(entity.name)
+                ,status= (entity.status)
                 )
     }
 

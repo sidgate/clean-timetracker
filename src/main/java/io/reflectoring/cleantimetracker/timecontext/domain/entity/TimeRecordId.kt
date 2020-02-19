@@ -7,11 +7,11 @@ import java.io.Serializable
 
 @Data
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-class TimeRecordId(var value: Long? = null) : Serializable {
+class TimeRecordId(var value: Long) : Serializable {
 
     companion object {
         @JvmStatic
-        fun of(id: Long?): TimeRecordId {
+        fun of(id: Long): TimeRecordId {
             return TimeRecordId(id)
         }
     }

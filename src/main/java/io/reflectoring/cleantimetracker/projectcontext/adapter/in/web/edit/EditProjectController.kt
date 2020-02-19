@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping
 @Controller
 internal class EditProjectController(private val listTasksUseCase: ListTasksUseCase, private val loadProjectUseCase: LoadProjectUseCase, private val editProjectModelMapper: EditProjectModelMapper, private val addTaskUseCase: AddTaskUseCase, private val changeTaskStatusUseCase: ChangeTaskStatusUseCase) {
     @GetMapping("/projects/{id}")
-    fun displayProjectForm(@PathVariable("id") projectId: Long?, model: Model): String {
+    fun displayProjectForm(@PathVariable("id") projectId: Long, model: Model): String {
         val project = loadProjectUseCase.loadProject(ProjectId.of(projectId))
         val tasks = listTasksUseCase.listTasksForProject(ProjectId.of(projectId))
         val projectModel = editProjectModelMapper.toModel(project, tasks)
@@ -26,7 +26,7 @@ internal class EditProjectController(private val listTasksUseCase: ListTasksUseC
     }
 
     @PostMapping("/projects/{id}/add-task")
-    fun addTask(@PathVariable("id") projectId: Long?,
+    fun addTask(@PathVariable("id") projectId: Long,
                 @ModelAttribute("addTaskForm") form: AddTaskForm): String {
         addTaskUseCase.addTask(form.name, form.invoiceable, ProjectId.of(projectId))
         return "redirect:/projects/{id}"

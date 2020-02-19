@@ -44,7 +44,7 @@ import javax.persistence.EntityManager
     }
 
     private fun projectReference(projectId: ProjectId?): ProjectEntity? {
-        return if (projectId == null || projectId.value == null) {
+        return if (projectId == null) {
             null
         } else entityManager.getReference(ProjectEntity::class.java, projectId.value)
     }

@@ -7,11 +7,11 @@ import java.io.Serializable
 
 @Data
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-class ProjectId( var value: Long? = null) : Serializable {
+class ProjectId( var value: Long) : Serializable {
 
     companion object {
         @JvmStatic
-        fun of(id: Long?): ProjectId {
+        fun of(id: Long): ProjectId {
             return ProjectId(id)
         }
     }

@@ -45,12 +45,11 @@ class TaskPersistenceAdapterIntegrationTest {
   @Sql(ProjectEntityTestFactory.SQL)
   void savesNewTask() {
     ProjectEntity project = projectEntityTestFactory.defaultProject();
-    Task task = Task.builder()
-            .name("Task")
-            .project(Project.builder()
-                    .id(ProjectId.of(project.getId()))
-                    .build())
-            .build();
+    Task task = new Task(null,"Task", null,
+            new Project(
+                    ProjectId.of(project.getId()), null, null
+                    ), null)
+            ;
     Task savedTask = taskPersistence.saveTask(task);
     assertThat(savedTask.getId()).isNotNull();
   }
@@ -59,7 +58,7 @@ class TaskPersistenceAdapterIntegrationTest {
   @Sql(TaskEntityTestFactory.SQL)
   void updatesStatus() {
     TaskEntity taskEntity = taskEntityTestFactory.defaultTask();
-    Task task = Task.builder().id(TaskId.of(taskEntity.getId())).build();
+    Task task = new Task(TaskId.of(taskEntity.getId()), null, null, null, null);
 
     em.clear();
     taskPersistence.changeStatus(task, TaskStatus.ACTIVE);

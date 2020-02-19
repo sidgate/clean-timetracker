@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 class TaskModelMapper {
 
-  TaskModel toModel(Task domainObject) {
+  private TaskModel toModel(Task domainObject) {
     return TaskModel.builder()
             .id(domainObject.getId().getValue())
-            .invoiceable(domainObject.isInvoiceable())
+            .invoiceable(domainObject.getInvoiceable())
             .name(domainObject.getName())
             .status(domainObject.getStatus())
             .build();

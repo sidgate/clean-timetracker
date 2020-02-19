@@ -40,12 +40,8 @@ public class SubmitTimeRecordsUseCase {
   private List<TimeRecord> toTimeRecords(List<SubmitTimeRecordInputData> inputRecords) {
     List<TimeRecord> records = new ArrayList<>();
     for (SubmitTimeRecordInputData inputRecord : inputRecords) {
-      records.add(TimeRecord.builder()
-              .date(inputRecord.getDate())
-              .minutes(inputRecord.getMinutes())
-              .taskId(inputRecord.getTaskId())
-              .status(TimeRecordStatus.OPEN)
-              .build());
+      records.add(new TimeRecord(null, inputRecord.getTaskId(),inputRecord.getDate(),  inputRecord.getMinutes(), TimeRecordStatus.OPEN)
+              );
     }
     return records;
   }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 internal class TaskEntityTestFactory(private val taskRepository: TaskEntityRepository) {
     fun defaultTask(): TaskEntity {
         return taskRepository.findById(1L)
-                .orElse(null)
+                .orElse(null)!!
     }
 
     companion object {

@@ -27,7 +27,7 @@ public class TimeRecordPersistenceAdapter implements QueryTimeRecordsPort, SaveT
   }
 
   @Override
-  public void saveTimeRecords(List<TimeRecord> records) {
+  public void saveTimeRecords(List<? extends TimeRecord> records) {
     List<TimeRecordEntity> recordEntities = timeRecordMapper.toEntities(records);
     timeRecordRepository.saveAll(recordEntities);
   }

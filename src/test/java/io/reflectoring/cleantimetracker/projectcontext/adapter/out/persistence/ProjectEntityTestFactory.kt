@@ -7,7 +7,7 @@ internal class ProjectEntityTestFactory(private val projectRepository: ProjectRe
     fun defaultProject(): ProjectEntity {
         return projectRepository
                 .findById(1L)
-                .orElse(null)
+                .orElse(null)!!
     }
 
     companion object {

@@ -35,7 +35,7 @@ internal class TaskPersistenceAdapterIntegrationTest {
                         ProjectId.of(project.id), null, null
                 ), null)
         val savedTask = taskPersistence!!.saveTask(task)
-        Java6Assertions.assertThat(savedTask.id).isNotNull()
+        Java6Assertions.assertThat(savedTask?.id).isNotNull()
     }
 
     @Test

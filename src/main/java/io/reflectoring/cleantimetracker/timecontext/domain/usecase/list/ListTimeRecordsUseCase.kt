@@ -2,7 +2,6 @@ package io.reflectoring.cleantimetracker.timecontext.domain.usecase.list
 
 import io.reflectoring.cleantimetracker.timecontext.domain.entity.TimeRecord
 import io.reflectoring.cleantimetracker.timecontext.domain.entity.TimeRecordWithTask
-import io.reflectoring.cleantimetracker.timecontext.domain.entity.TimeTrackingTask
 import io.reflectoring.cleantimetracker.timecontext.domain.port.out.persistence.QueryTimeRecordsPort
 import io.reflectoring.cleantimetracker.timecontext.domain.port.out.projectcontext.QueryTasksPort
 import org.springframework.stereotype.Service
@@ -18,20 +17,20 @@ class ListTimeRecordsUseCase(private val queryTimeRecordsPort: QueryTimeRecordsP
         return expandTasks(timeRecords)
     }
 
-    fun listAllTasks(): List<TimeTrackingTask> = queryTasksPort.listAllTasks()
+    fun listAllTasks() = queryTasksPort.listAllTasks()
 
     /**
      * Expands the task ID out a set of [TimeRecord]s to the real Task data. This is necessary since
      * the Task data is loaded from another bounded context.
      */
-    private fun expandTasks(timeRecords: List<TimeRecord>): List<TimeRecordWithTask> {
-        val taskIds = timeRecords.map { obj: TimeRecord -> obj.taskId }.toSet()
+    private fun expandTasks(timeRecords: List<TimeRecord?>): List<TimeRecordWithTask> {
+        val taskIds = timeRecords.map { obj: TimeRecord? -> obj?.taskId }.toSet()
 
-        val tasksById: Map<Long?, TimeTrackingTask> = queryTasksPort.listByIds(taskIds).map { it.id to it }.toMap()
+        val tasksById = queryTasksPort.listByIds(taskIds)?.map { it?.id to it }?.toMap()
 
 
         val expandedTimeRecords: MutableList<TimeRecordWithTask> = ArrayList()
-        timeRecords.forEach(Consumer { record: TimeRecord -> expandedTimeRecords.add(TimeRecordWithTask.fromTimeRecord(record, tasksById[record.taskId])) })
+        timeRecords.forEach(Consumer { record: TimeRecord? -> expandedTimeRecords.add(TimeRecordWithTask.fromTimeRecord(record!!, tasksById?.get(record.taskId))) })
         return expandedTimeRecords
     }
 

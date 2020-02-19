@@ -40,10 +40,10 @@ class ListTimeRecordsController(private val listTimeRecordsUseCase: ListTimeReco
         get() {
             val tasks = listTimeRecordsUseCase.listAllTasks()
             return tasks.stream()
-                    .map { task: TimeTrackingTask ->
+                    .map { task: TimeTrackingTask? ->
                         TaskModel(
-                                id = (task.id)
-                                ,name = (task.name)
+                                id = (task?.id)
+                                ,name = (task?.name)
                                 )
                     }.toList()
         }

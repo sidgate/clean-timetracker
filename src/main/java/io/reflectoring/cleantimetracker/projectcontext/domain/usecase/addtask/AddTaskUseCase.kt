@@ -23,7 +23,7 @@ class AddTaskUseCase(private val queryProjectsPort: QueryProjectsPort, private v
 
     private fun findProjectOrFail(projectId: ProjectId): Project {
         val project = queryProjectsPort.findOne(projectId)
-        return project.orElseThrow { ProjectNotFoundException(projectId) }
+        return project.orElseThrow { ProjectNotFoundException(projectId) }!!
     }
 
 }

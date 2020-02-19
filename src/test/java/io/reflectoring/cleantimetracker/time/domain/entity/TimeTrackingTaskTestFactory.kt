@@ -5,7 +5,7 @@ import java.util.*
 
 object TimeTrackingTaskTestFactory {
     @JvmStatic
-    fun defaultTasks( taskIds: Array<Long>): List<TimeTrackingTask> {
+    fun defaultTasks(taskIds: Array<Long>): List<TimeTrackingTask> {
         val tasks: MutableList<TimeTrackingTask> = ArrayList()
         for (taskId in taskIds) {
             tasks.add(defaultTask(taskId))
@@ -16,11 +16,11 @@ object TimeTrackingTaskTestFactory {
     fun defaultTask(taskId: Long): TimeTrackingTask {
         return TimeTrackingTask(
                 active = true
-                ,id =(taskId)
-                ,invoiceable = true
-                ,name = ("Task $taskId")
-                ,projectId = (42L)
-                ,projectName = ("Project 42")
-                )
+                , id = (taskId)
+                , invoiceable = true
+                , name = ("Task $taskId")
+                , projectId = (42L)
+                , projectName = ("Project 42")
+        )
     }
 }

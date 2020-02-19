@@ -9,9 +9,9 @@ object ProjectTestFactory {
     @JvmStatic
     fun defaultProject(): Optional<Project> {
         return Optional.of(Project(
-                id =(of(1L))
-                ,status =(ProjectStatus.ACTIVE)
-                ,name =("Project 1")
-                ))
+                id = (of(1L))
+                , status = (ProjectStatus.ACTIVE)
+                , name = ("Project 1")
+        ))
     }
 }

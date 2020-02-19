@@ -29,9 +29,9 @@ class ListTimeRecordsController(private val listTimeRecordsUseCase: ListTimeReco
     fun submitTimeRecord(form: @Valid SubmitTimeRecordForm?): String {
         val input = SubmitTimeRecordInputData(
                 date = (form!!.date)
-                 , minutes =(form.hours?.times(60)?.roundToInt())
-                ,taskId = (form.taskId)
-                )
+                , minutes = (form.hours?.times(60)?.roundToInt())
+                , taskId = (form.taskId)
+        )
         submitTimeRecordsUseCase.submitTimeRecords(listOf(input))
         return "redirect:/time-records"
     }
@@ -43,8 +43,8 @@ class ListTimeRecordsController(private val listTimeRecordsUseCase: ListTimeReco
                     .map { task: TimeTrackingTask? ->
                         TaskModel(
                                 id = (task?.id)
-                                ,name = (task?.name)
-                                )
+                                , name = (task?.name)
+                        )
                     }.toList()
         }
 
@@ -52,14 +52,14 @@ class ListTimeRecordsController(private val listTimeRecordsUseCase: ListTimeReco
         get() {
             val records = listTimeRecordsUseCase.listTimeRecords(ListTimeRecordsQueryParameters(
                     start = (LocalDate.now().minusDays(15))
-                     ,end = (LocalDate.now().plusDays(15)))
-                    )
+                    , end = (LocalDate.now().plusDays(15)))
+            )
             return records.stream()
                     .map { record: TimeRecordWithTask ->
                         TimeRecordListModel(
                                 date = (record.date)
-                                 ,hours = (record.minutes!! / 60.toFloat())
-                                 ,taskName = (record.task?.name))
+                                , hours = (record.minutes!! / 60.toFloat())
+                                , taskName = (record.task?.name))
                     }
                     .toList()
         }

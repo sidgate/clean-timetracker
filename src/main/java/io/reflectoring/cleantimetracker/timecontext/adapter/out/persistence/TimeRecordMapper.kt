@@ -10,10 +10,10 @@ class TimeRecordMapper {
     fun toDomainObject(entity: TimeRecordEntity): TimeRecord {
         return TimeRecord().apply {
             status = (entity.status)
-                minutes = (entity.minutes)
-                date = (entity.date)
-                taskId = (entity.taskId)
-                id = (if (entity.id == null) null else TimeRecordId.of(entity.id!!))
+            minutes = (entity.minutes)
+            date = (entity.date)
+            taskId = (entity.taskId)
+            id = (if (entity.id == null) null else TimeRecordId.of(entity.id!!))
         }
     }
 
@@ -28,10 +28,10 @@ class TimeRecordMapper {
     fun toEntity(domainObject: TimeRecord): TimeRecordEntity {
         return TimeRecordEntity().apply {
             status = (domainObject.status)
-                minutes= (domainObject.minutes)
-                date= (domainObject.date)
-                taskId= (domainObject.taskId)
-                id= (if (domainObject.id == null) null else domainObject.id!!.value)
+            minutes = (domainObject.minutes)
+            date = (domainObject.date)
+            taskId = (domainObject.taskId)
+            id = (if (domainObject.id == null) null else domainObject.id!!.value)
         }
     }
 

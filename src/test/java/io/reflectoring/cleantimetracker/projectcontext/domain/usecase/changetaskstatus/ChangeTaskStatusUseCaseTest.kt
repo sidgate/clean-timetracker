@@ -13,7 +13,6 @@ import org.mockito.ArgumentMatchers
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
-import java.util.*
 
 @ExtendWith(MockitoExtension::class)
 internal class ChangeTaskStatusUseCaseTest {

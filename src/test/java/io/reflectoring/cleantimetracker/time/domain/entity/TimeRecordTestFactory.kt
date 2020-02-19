@@ -11,12 +11,12 @@ object TimeRecordTestFactory {
         val records: MutableList<TimeRecord> = ArrayList()
         for (taskId in taskIds) {
             records.add(TimeRecord(
-                    minutes =(8 * 60)
-                    ,date =(LocalDate.of(2018, 10, 22))
-                    ,status= (TimeRecordStatus.OPEN)
-                    ,taskId =(taskId)
-                    ,id = (of(43L))
-                    ))
+                    minutes = (8 * 60)
+                    , date = (LocalDate.of(2018, 10, 22))
+                    , status = (TimeRecordStatus.OPEN)
+                    , taskId = (taskId)
+                    , id = (of(43L))
+            ))
         }
         return records
     }

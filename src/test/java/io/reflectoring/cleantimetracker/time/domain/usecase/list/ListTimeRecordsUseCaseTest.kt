@@ -34,9 +34,9 @@ internal class ListTimeRecordsUseCaseTest {
     @Test
     fun whenIntervalMoreThanAMonth_thenThrowsException() {
         val params = ListTimeRecordsQueryParameters(
-                start= (LocalDate.of(2018, 10, 1))
-                ,end = (LocalDate.of(2018, 11, 15))
-                )
+                start = (LocalDate.of(2018, 10, 1))
+                , end = (LocalDate.of(2018, 11, 15))
+        )
         Assertions.assertThatThrownBy { usecase!!.listTimeRecords(params) }.isInstanceOf(IntervalTooLongException::class.java)
     }
 
@@ -44,8 +44,8 @@ internal class ListTimeRecordsUseCaseTest {
     fun whenEndBeforeStart_thenThrowsException() {
         val params = ListTimeRecordsQueryParameters(
                 start = (LocalDate.of(2018, 10, 1))
-                ,end= (LocalDate.of(2018, 9, 30))
-                )
+                , end = (LocalDate.of(2018, 9, 30))
+        )
         Assertions.assertThatThrownBy { usecase!!.listTimeRecords(params) }.isInstanceOf(IntervalEndBeforeStartException::class.java)
     }
 
@@ -55,9 +55,9 @@ internal class ListTimeRecordsUseCaseTest {
         val end = LocalDate.of(2018, 10, 5)
         val taskIds = arrayOf(1L, 2L, 3L)
         val params = ListTimeRecordsQueryParameters(
-                start =(start),
-                end= (end)
-                )
+                start = (start),
+                end = (end)
+        )
         val providedRecords = whenPersistenceProvidesTimeRecords(start, end, taskIds)
         whenProjectContextProvidesTasks(taskIds)
         val records = usecase!!.listTimeRecords(params)
@@ -65,13 +65,13 @@ internal class ListTimeRecordsUseCaseTest {
         records.forEach(Consumer { record: TimeRecordWithTask -> Assertions.assertThat(record.task).isNotNull() })
     }
 
-    private fun whenPersistenceProvidesTimeRecords(start: LocalDate, end: LocalDate,  taskIds: Array<Long>): List<TimeRecord> {
+    private fun whenPersistenceProvidesTimeRecords(start: LocalDate, end: LocalDate, taskIds: Array<Long>): List<TimeRecord> {
         val records = TimeRecordTestFactory.defaultRecords(*taskIds)
         Mockito.`when`(queryTimeRecordsPort!!.listTimeRecords(ArgumentMatchers.eq(start), ArgumentMatchers.eq(end))).thenReturn(records)
         return records
     }
 
-    private fun whenProjectContextProvidesTasks( taskIds: Array<Long>): List<TimeTrackingTask> {
+    private fun whenProjectContextProvidesTasks(taskIds: Array<Long>): List<TimeTrackingTask> {
         val tasks = TimeTrackingTaskTestFactory.defaultTasks(taskIds)
         Mockito.`when`(queryTasksPort!!.listByIds(ArgumentMatchers.anySet())).thenReturn(tasks)
         return tasks

@@ -8,13 +8,13 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 @Component
- class ProjectEntityMapper {
+class ProjectEntityMapper {
     fun toEntity(domainObject: Project): ProjectEntity {
         return ProjectEntity(
-                id =(if (domainObject.id != null) domainObject.id!!.value else null)
-                ,name= (domainObject.name)
-                ,status =(domainObject.status)
-                )
+                id = (if (domainObject.id != null) domainObject.id!!.value else null)
+                , name = (domainObject.name)
+                , status = (domainObject.status)
+        )
     }
 
     fun toEntities(domainObjects: List<Project>): List<ProjectEntity> {
@@ -25,10 +25,10 @@ import java.util.stream.Collectors
 
     fun toDomainObject(entity: ProjectEntity?): Project {
         return Project(
-                id =(of(entity?.id!!))
-                ,name =(entity.name)
-                ,status= (entity.status)
-                )
+                id = (of(entity?.id!!))
+                , name = (entity.name)
+                , status = (entity.status)
+        )
     }
 
     fun toDomainObjects(entities: Iterable<ProjectEntity>): List<Project> {

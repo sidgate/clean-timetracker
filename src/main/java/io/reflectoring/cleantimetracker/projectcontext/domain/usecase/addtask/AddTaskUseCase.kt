@@ -15,8 +15,8 @@ class AddTaskUseCase(private val queryProjectsPort: QueryProjectsPort, private v
     fun addTask(taskName: String?, invoiceable: Boolean, projectId: ProjectId) {
         val project = findProjectOrFail(projectId)
         val task = Task(
-                 invoiceable = invoiceable,
-                 name = taskName,
+                invoiceable = invoiceable,
+                name = taskName,
                 project = project)
         createTaskPort.saveTask(task)
     }

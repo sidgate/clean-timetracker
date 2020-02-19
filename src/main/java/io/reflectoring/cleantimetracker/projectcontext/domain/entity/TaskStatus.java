@@ -2,8 +2,8 @@ package io.reflectoring.cleantimetracker.projectcontext.domain.entity;
 
 public enum TaskStatus {
 
-  ACTIVE,
+	ACTIVE,
 
-  INACTIVE;
+	INACTIVE;
 
 }

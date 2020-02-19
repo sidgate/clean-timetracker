@@ -16,7 +16,7 @@ class ProjectContextAdapter(private val timeContextAdapter: TimeContextAdapter, 
 
     override fun loadTask(taskId: Long): TimeTrackingTask? {
         val task = timeContextAdapter.loadTask(taskId)
-        return if (task !=null) {
+        return if (task != null) {
             taskMapper.toTimeTrackingTask(task)
         } else {
             null

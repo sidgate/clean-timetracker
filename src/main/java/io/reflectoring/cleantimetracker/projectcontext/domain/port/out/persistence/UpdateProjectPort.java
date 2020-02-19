@@ -5,6 +5,6 @@ import io.reflectoring.cleantimetracker.projectcontext.domain.entity.ProjectStat
 
 public interface UpdateProjectPort {
 
-  void changeStatus(Project project, ProjectStatus status);
+	void changeStatus(Project project, ProjectStatus status);
 
 }

@@ -13,7 +13,7 @@ import javax.transaction.Transactional
 class ChangeTaskStatusUseCase(private val queryTasksPort: QueryTasksPort, private val updateTaskPort: UpdateTaskPort) {
     fun deactivateTask(taskId: TaskId?) {
         val optionalTask = queryTasksPort.findOne(taskId!!)
-        if (optionalTask !=null) {
+        if (optionalTask != null) {
             updateTaskPort.changeStatus(optionalTask, TaskStatus.INACTIVE)
         } else {
             throw TaskNotFoundException(taskId)
@@ -21,8 +21,8 @@ class ChangeTaskStatusUseCase(private val queryTasksPort: QueryTasksPort, privat
     }
 
     fun activateTask(taskId: TaskId?) {
-        val optionalTask  = queryTasksPort.findOne(taskId!!)
-        if (optionalTask !=null) {
+        val optionalTask = queryTasksPort.findOne(taskId!!)
+        if (optionalTask != null) {
             updateTaskPort.changeStatus(optionalTask, TaskStatus.ACTIVE)
         } else {
             throw TaskNotFoundException(taskId)

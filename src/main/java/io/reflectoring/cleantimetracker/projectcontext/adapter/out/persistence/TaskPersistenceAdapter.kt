@@ -9,7 +9,6 @@ import io.reflectoring.cleantimetracker.projectcontext.domain.port.out.persisten
 import io.reflectoring.cleantimetracker.projectcontext.domain.port.out.persistence.UpdateTaskPort
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 internal class TaskPersistenceAdapter(private val taskEntityRepository: TaskEntityRepository, private val taskEntityMapper: TaskEntityMapper) : CreateTaskPort, QueryTasksPort, UpdateTaskPort {
@@ -20,17 +19,17 @@ internal class TaskPersistenceAdapter(private val taskEntityRepository: TaskEnti
     }
 
     override fun listTasksForProject(projectId: ProjectId?): List<Task> {
-        val tasks = taskEntityRepository.findByProjectId(projectId!!.value!!)
+        val tasks = taskEntityRepository.findByProjectId(projectId!!.value)
         return taskEntityMapper.toDomainObjects(tasks)
     }
 
     override fun findOne(taskId: TaskId): Task? {
-        return taskEntityRepository.findByIdOrNull(taskId.value)?.let { taskEntityMapper.toDomainObject(it)  }
+        return taskEntityRepository.findByIdOrNull(taskId.value)?.let { taskEntityMapper.toDomainObject(it) }
     }
 
     override fun listByIds(taskIds: List<TaskId>): List<Task> {
         val taskEntities = taskEntityRepository.findByIdIn(taskIds
-                .mapNotNull{it.value}
+                .mapNotNull { it.value }
                 .toList())
         return taskEntityMapper.toDomainObjects(taskEntities)
     }

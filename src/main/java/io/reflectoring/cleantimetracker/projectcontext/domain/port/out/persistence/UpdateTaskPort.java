@@ -5,6 +5,6 @@ import io.reflectoring.cleantimetracker.projectcontext.domain.entity.TaskStatus;
 
 public interface UpdateTaskPort {
 
-  void changeStatus(Task task, TaskStatus status);
+	void changeStatus(Task task, TaskStatus status);
 
 }

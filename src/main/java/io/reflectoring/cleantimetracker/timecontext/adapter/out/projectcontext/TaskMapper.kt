@@ -7,16 +7,16 @@ import org.springframework.stereotype.Component
 import java.util.stream.Collectors
 
 @Component
- class TaskMapper {
+class TaskMapper {
     fun toTimeTrackingTask(task: Task): TimeTrackingTask {
         return TimeTrackingTask().apply {
 
             projectName = (task.project?.name)
-                name= (task.name)
-                invoiceable = (task.invoiceable)
-                id = (task.id?.value)
-                active = (task.status == TaskStatus.ACTIVE)
-                projectId = (task.project?.id?.value)
+            name = (task.name)
+            invoiceable = (task.invoiceable)
+            id = (task.id?.value)
+            active = (task.status == TaskStatus.ACTIVE)
+            projectId = (task.project?.id?.value)
         }
     }
 

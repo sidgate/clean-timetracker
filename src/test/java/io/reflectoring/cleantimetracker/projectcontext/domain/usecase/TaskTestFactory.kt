@@ -9,11 +9,11 @@ object TaskTestFactory {
     @JvmStatic
     fun defaultTask(): Optional<Task> {
         return Optional.of(Task(
-                name= ("Task 1")
-                ,id= (of(1L))
-                ,project=(ProjectTestFactory.defaultProject().get())
-                ,invoiceable=true
-                ,status= (TaskStatus.ACTIVE)
-                ))
+                name = ("Task 1")
+                , id = (of(1L))
+                , project = (ProjectTestFactory.defaultProject().get())
+                , invoiceable = true
+                , status = (TaskStatus.ACTIVE)
+        ))
     }
 }

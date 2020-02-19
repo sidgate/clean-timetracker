@@ -1,13 +1,9 @@
 package io.reflectoring.cleantimetracker.projectcontext.domain.entity
 
-import lombok.AccessLevel
-import lombok.Data
-import lombok.RequiredArgsConstructor
 import java.io.Serializable
 
-@Data
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-class TaskId( var value: Long) : Serializable {
+
+class TaskId(var value: Long) : Serializable {
 
     companion object {
         @JvmStatic

@@ -9,17 +9,17 @@ internal object SubmitTimeRecordInputDataTestFactory {
     fun eightHours(taskId: Long? = 42L): SubmitTimeRecordInputData {
         return SubmitTimeRecordInputData(
                 date = (LocalDate.of(2018, 10, 20))
-                ,minutes = (8 * 60)
-                ,taskId =(taskId)
-                )
+                , minutes = (8 * 60)
+                , taskId = (taskId)
+        )
     }
 
     @JvmStatic
     fun thirteenHours(taskId: Long?): SubmitTimeRecordInputData {
         return SubmitTimeRecordInputData(
                 date = (LocalDate.of(2018, 10, 20))
-                ,minutes = (13 * 60)
-                ,taskId = (taskId)
-                )
+                , minutes = (13 * 60)
+                , taskId = (taskId)
+        )
     }
 }

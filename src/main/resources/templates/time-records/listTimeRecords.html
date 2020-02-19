@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html layout:decorate="~{layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <body>
 
 <section class="content" layout:fragment="content">
@@ -12,12 +12,12 @@
             <h3>Submit Time Record</h3>
         </div>
 
-        <form action="#" th:action="@{/time-records}" th:object="${submitTimeRecordForm}" method="post">
+        <form action="#" method="post" th:action="@{/time-records}" th:object="${submitTimeRecordForm}">
             <div class="box-body">
                 <div class="form-group">
                     <label class="col-sm-2" for="date">Date</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="date" type="date" th:field="*{date}"/>
+                        <input class="form-control" id="date" th:field="*{date}" type="date"/>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     <label class="col-sm-2" for="task">Task</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="task" th:field="*{taskId}">
-                            <option th:each="task : ${tasks}" th:value="${task.id}" th:text="${task.name}"></option>
+                            <option th:each="task : ${tasks}" th:text="${task.name}" th:value="${task.id}"></option>
                         </select>
                     </div>
                 </div>
@@ -33,13 +33,13 @@
                 <div class="form-group">
                     <label class="col-sm-2" for="hours">Hours</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="hours" type="number" step="0.25" th:field="*{hours}"/>
+                        <input class="form-control" id="hours" step="0.25" th:field="*{hours}" type="number"/>
                     </div>
                 </div>
             </div>
 
             <div class="box-footer">
-                <input type="submit" value="Submit Time Record" class="btn btn-default"/>
+                <input class="btn btn-default" type="submit" value="Submit Time Record"/>
             </div>
         </form>
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class TimeContextAdapter(private val queryTasksPort: QueryTasksPort) {
     fun listTasksByIds(taskIds: List<Long>): List<Task> {
         return queryTasksPort.listByIds(taskIds
-                .map { obj-> of(obj) }
+                .map { obj -> of(obj) }
                 .toList())
     }
 

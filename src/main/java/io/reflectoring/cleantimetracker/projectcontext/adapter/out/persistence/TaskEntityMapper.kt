@@ -10,15 +10,15 @@ import java.util.stream.Collectors
 import javax.persistence.EntityManager
 
 @Component
- class TaskEntityMapper(private val entityManager: EntityManager, private val projectEntityMapper: ProjectEntityMapper) {
+class TaskEntityMapper(private val entityManager: EntityManager, private val projectEntityMapper: ProjectEntityMapper) {
     fun toEntity(domainObject: Task): TaskEntity {
         return TaskEntity(
-                id= (if (domainObject.id != null) domainObject.id!!.value else null)
-                ,name =(domainObject.name)
-                ,project= (projectReference(domainObject.project!!.id))
-                ,invoiceable =(domainObject.invoiceable)
-                ,status =(domainObject.status)
-                )
+                id = (if (domainObject.id != null) domainObject.id!!.value else null)
+                , name = (domainObject.name)
+                , project = (projectReference(domainObject.project!!.id))
+                , invoiceable = (domainObject.invoiceable)
+                , status = (domainObject.status)
+        )
     }
 
     fun toEntities(domainObjects: List<Task>): List<TaskEntity> {
@@ -30,11 +30,11 @@ import javax.persistence.EntityManager
     fun toDomainObject(entity: TaskEntity): Task {
         return Task(
                 id = (of(entity.id!!))
-                ,name= (entity.name)
-                ,project =(projectEntityMapper.toDomainObject(entity.project))
-                ,invoiceable= (entity.invoiceable)
-                ,status= (entity.status)
-                )
+                , name = (entity.name)
+                , project = (projectEntityMapper.toDomainObject(entity.project))
+                , invoiceable = (entity.invoiceable)
+                , status = (entity.status)
+        )
     }
 
     fun toDomainObjects(entities: Iterable<TaskEntity>): List<Task> {

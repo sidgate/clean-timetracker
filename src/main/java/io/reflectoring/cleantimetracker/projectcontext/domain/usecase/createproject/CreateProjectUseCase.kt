@@ -10,7 +10,7 @@ import javax.transaction.Transactional
 @Transactional
 class CreateProjectUseCase(private val createProjectPort: CreateProjectPort) {
     fun createProject(name: String?): Project {
-        val project = Project(name = name, status =ProjectStatus.INACTIVE )
+        val project = Project(name = name, status = ProjectStatus.INACTIVE)
         return createProjectPort.createProject(project)
     }
 

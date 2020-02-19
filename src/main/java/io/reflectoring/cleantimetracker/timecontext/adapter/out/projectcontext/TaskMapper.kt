@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 import java.util.stream.Collectors
 
 @Component
-internal class TaskMapper {
+ class TaskMapper {
     fun toTimeTrackingTask(task: Task): TimeTrackingTask {
         return TimeTrackingTask().apply {
 

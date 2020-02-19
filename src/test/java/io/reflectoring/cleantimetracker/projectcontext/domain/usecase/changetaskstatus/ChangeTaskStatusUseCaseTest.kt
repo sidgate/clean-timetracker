@@ -27,7 +27,7 @@ internal class ChangeTaskStatusUseCaseTest {
     @Test
     fun whenTaskIsFound_activatesTask() {
         val task = defaultTask().get()
-        Mockito.`when`(queryTasksPort!!.findOne(task.id)).thenReturn(Optional.of(task))
+        Mockito.`when`(queryTasksPort!!.findOne(task.id!!)).thenReturn((task))
         usecase!!.activateTask(task.id)
         Mockito.verify(updateTaskPort, Mockito.times(1))!!.changeStatus(ArgumentMatchers.eq(task), ArgumentMatchers.eq(TaskStatus.ACTIVE))
     }
@@ -35,14 +35,14 @@ internal class ChangeTaskStatusUseCaseTest {
     @Test
     fun whenTaskIsNotFound_activateThrowsException() {
         val task = defaultTask().get()
-        Mockito.`when`(queryTasksPort!!.findOne(task.id)).thenReturn(Optional.empty())
+        Mockito.`when`(queryTasksPort!!.findOne(task.id!!)).thenReturn(null)
         Assertions.assertThatThrownBy { usecase!!.activateTask(task.id) }.isInstanceOf(TaskNotFoundException::class.java)
     }
 
     @Test
     fun whenTaskIsFound_deactivatesTask() {
         val task = defaultTask().get()
-        Mockito.`when`(queryTasksPort!!.findOne(task.id)).thenReturn(Optional.of(task))
+        Mockito.`when`(queryTasksPort!!.findOne(task.id!!)).thenReturn((task))
         usecase!!.deactivateTask(task.id)
         Mockito.verify(updateTaskPort, Mockito.times(1))!!.changeStatus(ArgumentMatchers.eq(task), ArgumentMatchers.eq(TaskStatus.INACTIVE))
     }
@@ -50,7 +50,7 @@ internal class ChangeTaskStatusUseCaseTest {
     @Test
     fun whenTaskIsNotFound_deactivateThrowsException() {
         val task = defaultTask().get()
-        Mockito.`when`(queryTasksPort!!.findOne(task.id)).thenReturn(Optional.empty())
+        Mockito.`when`(queryTasksPort!!.findOne(task.id!!)).thenReturn(null)
         Assertions.assertThatThrownBy { usecase!!.deactivateTask(task.id) }.isInstanceOf(TaskNotFoundException::class.java)
     }
 }

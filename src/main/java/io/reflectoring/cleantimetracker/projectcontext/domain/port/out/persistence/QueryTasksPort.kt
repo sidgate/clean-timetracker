@@ -7,7 +7,7 @@ import java.util.*
 
 interface QueryTasksPort {
     fun listTasksForProject(projectId: ProjectId?): List<Task>
-    fun findOne(taskId: TaskId?): Optional<Task>
+    fun findOne(taskId: TaskId): Task?
     fun listByIds(taskIds: List<TaskId>): List<Task>
     fun listAllTasks(): List<Task>
 }

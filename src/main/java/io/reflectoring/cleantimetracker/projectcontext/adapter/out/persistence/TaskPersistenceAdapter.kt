@@ -7,6 +7,7 @@ import io.reflectoring.cleantimetracker.projectcontext.domain.entity.TaskStatus
 import io.reflectoring.cleantimetracker.projectcontext.domain.port.out.persistence.CreateTaskPort
 import io.reflectoring.cleantimetracker.projectcontext.domain.port.out.persistence.QueryTasksPort
 import io.reflectoring.cleantimetracker.projectcontext.domain.port.out.persistence.UpdateTaskPort
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -23,9 +24,8 @@ internal class TaskPersistenceAdapter(private val taskEntityRepository: TaskEnti
         return taskEntityMapper.toDomainObjects(tasks)
     }
 
-    override fun findOne(taskId: TaskId?): Optional<Task> {
-        return taskEntityRepository.findById(taskId!!.value)
-                .map { entity: TaskEntity? -> taskEntityMapper.toDomainObject(entity!!) }
+    override fun findOne(taskId: TaskId): Task? {
+        return taskEntityRepository.findByIdOrNull(taskId.value!!)?.let { taskEntityMapper.toDomainObject(it)  }
     }
 
     override fun listByIds(taskIds: List<TaskId>): List<Task> {
